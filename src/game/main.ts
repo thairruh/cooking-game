@@ -1,6 +1,6 @@
 import { Boot } from './scenes/Boot';
 import { GameOver } from './scenes/GameOver';
-import { Game as MainGame } from './scenes/Game';
+import { CharSelect as CharSelect } from './scenes/CharSelect';
 import { MainMenu } from './scenes/MainMenu';
 import { AUTO, Game } from 'phaser';
 import { Preloader } from './scenes/Preloader';
@@ -9,18 +9,29 @@ import { Preloader } from './scenes/Preloader';
 //  https://docs.phaser.io/api-documentation/typedef/types-core#gameconfig
 const config: Phaser.Types.Core.GameConfig = {
     type: AUTO,
-    width: 1024,
-    height: 768,
+    width: 1920,
+    height: 1080,
     parent: 'game-container',
-    backgroundColor: '#028af8',
+    backgroundColor: '#f3bdbd',
+
+    scale: {
+        mode: Phaser.Scale.RESIZE,              
+        autoCenter: Phaser.Scale.CENTER_BOTH, 
+        width: 1920,
+        height: 1080,
+    },
+
     scene: [
         Boot,
         Preloader,
         MainMenu,
-        MainGame,
+        CharSelect,
         GameOver
     ]
+    
 };
+
+
 
 const StartGame = (parent: string) => {
 
