@@ -11,6 +11,8 @@ export class Cafe extends Scene
     player!: Phaser.Physics.Arcade.Sprite;
     cursors!: any;
 
+    private hasTransitioned = false;
+
 
     constructor ()
     {
@@ -26,7 +28,14 @@ export class Cafe extends Scene
 
 
         // Enable physics 
-        this.player = this.physics.add.sprite(150, 165, 'player');
+        this.player = this.physics.add.sprite(450, 150, 'player');
+        const anim = this.anims.get('walk-left');
+        if (anim) {
+            const firstFrame = anim.frames[0].frame.name; // or .frameNumber depending on your spritesheet
+            this.player.setFrame(firstFrame);
+        }
+
+        this.physics.world.setBounds(-10, 100, 600, 200);
         this.player.setCollideWorldBounds(true); // stops at screen edges
 
         // Store movement keys
@@ -92,6 +101,16 @@ export class Cafe extends Scene
 
         // Stop previous movement
         this.player.setVelocity(0);
+        const playerY = this.player.y;
+
+        if (playerY > 500) {
+            this.scene.start('Kitchen'); // replace with your next scene key
+        }
+
+        if (!this.hasTransitioned && this.player.x > 550) {
+            this.hasTransitioned = true;
+            this.scene.start('Kitchen');
+        }
 
         // Move and play animations
         if (this.cursors.a.isDown) {
