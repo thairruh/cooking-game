@@ -14,7 +14,8 @@ export class Preloader extends Scene {
     preload ()
     {
         //  load ui assets
-        this.load.setPath('/assets/ui')
+        this.load.setPath('/assets/ui');
+
         
         this.load.image('restaurantBg', 'background.png');
 
@@ -26,9 +27,14 @@ export class Preloader extends Scene {
           frameHeight: 32
         });
 
-        this.load.spritesheet('npc', 'anika.png', {
+        this.load.spritesheet('npc', 'salma.png',{
           frameWidth: 32,
           frameHeight: 32
+        });
+
+        this.load.spritesheet('npc', 'anika.png', {
+            frameWidth: 32,
+            frameHeight: 32
         });
 
         // load interior assets
