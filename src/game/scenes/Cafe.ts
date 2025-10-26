@@ -107,9 +107,10 @@ export class Cafe extends Scene
             this.scene.start('Kitchen'); // replace with your next scene key
         }
 
-        if (!this.hasTransitioned && this.player.x > 550) {
+        if (!this.hasTransitioned && this.player.x > 540) {
             this.hasTransitioned = true;
             this.scene.start('Kitchen');
+            this.hasTransitioned = false;
         }
 
         // Move and play animations
