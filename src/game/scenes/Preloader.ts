@@ -14,17 +14,21 @@ export class Preloader extends Scene {
     preload ()
     {
         //  load ui assets
-        this.load.setPath('/assets/ui')
+        this.load.setPath('/assets/ui');
+
         this.load.image('restaurantBg', 'background.png');
 
         // load character assets
         this.load.setPath('/assets/characters');
-        this.load.image('oldman', 'oldman.png');
-        this.load.image('girl', 'girl.png');
 
-        this.load.spritesheet('player', 'anika.png', {
-        frameWidth: 32,
-        frameHeight: 32
+        this.load.spritesheet('player', 'salma.png',{
+          frameWidth: 32,
+          frameHeight: 32
+        });
+
+        this.load.spritesheet('npc', 'anika.png', {
+          frameWidth: 32,
+          frameHeight: 32
         });
 
         // load interior assets

@@ -35,7 +35,6 @@ const config: Phaser.Types.Core.GameConfig = {
         MainMenu,
         Intro1,
         Intro2,
-        CharSelect,
         Cafe,
         GameOver,
     ],
