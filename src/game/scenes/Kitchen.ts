@@ -1,6 +1,5 @@
 import { EventBus } from '../EventBus';
 import { GameObjects, Scene } from 'phaser';
-import { GridEngine, GridEngineHeadless } from "grid-engine";
 
 export class Kitchen extends Scene
 {

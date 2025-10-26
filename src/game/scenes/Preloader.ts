@@ -22,7 +22,7 @@ export class Preloader extends Scene {
         this.load.image('oldman', 'oldman.png');
         this.load.image('girl', 'girl.png');
 
-        this.load.spritesheet('anika', 'anika.png', {
+        this.load.spritesheet('player', 'anika.png', {
         frameWidth: 32,
         frameHeight: 32
         });
@@ -31,40 +31,47 @@ export class Preloader extends Scene {
         this.load.setPath('/assets/interior');
         this.load.image('table', 'table.png');
         this.load.image('chair', 'chair.png');
+        this.load.image('counter', 'counter.png');
 
     }
 
   create() {
+    if (!this.anims.exists('walk-down')) {
     this.anims.create({
       key: 'walk-down',
-      frames: this.anims.generateFrameNumbers('anika', { start: 0, end: 2 }),
+      frames: this.anims.generateFrameNumbers('player', { start: 0, end: 2 }),
       frameRate: 5,
       repeat: -1
     });
+}
 
+    if (!this.anims.exists('walk-up')) {
     this.anims.create({
       key: 'walk-up',
-      frames: this.anims.generateFrameNumbers('anika', { start: 3, end: 5 }),
+      frames: this.anims.generateFrameNumbers('player', { start: 3, end: 5 }),
       frameRate: 5,
       repeat: -1
     });
+}
 
-    this.anims.create({
-      key: 'walk-left',
-      frames: this.anims.generateFrameNumbers('anika', { start: 6, end: 8 }),
-      frameRate: 5,
-      repeat: -1
-    });
-
+    if (!this.anims.exists('walk-right')) {
     this.anims.create({
       key: 'walk-right',
-      frames: this.anims.generateFrameNumbers('anika', { start: 9, end: 11 }),
+      frames: this.anims.generateFrameNumbers('player', { start: 6, end: 8 }),
       frameRate: 5,
       repeat: -1
     });
+}
 
-    // Optional test sprite:
-    // const player = this.add.sprite(200, 200, 'anika').play('walk-down');
+    if (!this.anims.exists('walk-left')) {
+    this.anims.create({
+      key: 'walk-left',
+      frames: this.anims.generateFrameNumbers('player', { start: 9, end: 11 }),
+      frameRate: 5,
+      repeat: -1
+    });
+}
+
 
     this.scene.start('MainMenu');
   }

@@ -1,12 +1,15 @@
 import { EventBus } from '../EventBus';
 import { GameObjects, Scene } from 'phaser';
-import { GridEngine, GridEngineHeadless } from "grid-engine";
+
 
 export class Cafe extends Scene
 {
     background: Phaser.GameObjects.Image;
     gameText: Phaser.GameObjects.Text;
     title: GameObjects.Text;
+
+    player!: Phaser.Physics.Arcade.Sprite;
+    cursors!: any;
 
 
     constructor ()
@@ -15,8 +18,25 @@ export class Cafe extends Scene
     }
 
     create ()
-    {
-        
+    { 
+        console.log('has player texture?', this.textures.exists('player'));
+        console.log('has walk-down anim?', this.anims.exists('walk-down'));
+        console.log('has walk-up anim?', this.anims.exists('walk-up'));
+        console.log('has walk-side anim?', this.anims.exists('walk-side'));
+
+
+        // Enable physics 
+        this.player = this.physics.add.sprite(150, 165, 'player');
+        this.player.setCollideWorldBounds(true); // stops at screen edges
+
+        // Store movement keys
+        this.cursors = this.input.keyboard!.addKeys({
+        w: Phaser.Input.Keyboard.KeyCodes.W,
+        a: Phaser.Input.Keyboard.KeyCodes.A,
+        s: Phaser.Input.Keyboard.KeyCodes.S,
+        d: Phaser.Input.Keyboard.KeyCodes.D
+        });
+
         const {width, height} = this.scale;
 
         this.background = this.add.image(width / 2, height / 2, 'restaurantBg')
@@ -31,12 +51,19 @@ export class Cafe extends Scene
 
         this.background.setScale(scale);
 
-        const player = this.add.sprite(150, 165, 'player');
-        player.anims.play('walk-down', true);
+        
+        this.player.setScale(2);
+        this.player.setDepth(2);
 
+        const counter = this.physics.add.staticSprite(400, 205, 'counter')
+        .setOrigin(0.5).setDepth(1.25);
+        counter.setScale(1.5);
 
-        this.createTableSet(80, 155);
-        this.createTableSet(80, 260);
+        this.createTableSet(110, 155);
+        this.createTableSet(110, 260);
+
+        this.physics.add.collider(this.player, counter);
+
 
         EventBus.emit('current-scene-ready', this);
     }
@@ -45,20 +72,53 @@ export class Cafe extends Scene
             // table
             const table = this.add.sprite(x, y, 'table')
             .setOrigin(0.5).setDepth(1);
-            table.setScale(0.75);
+            table.setScale(1.5);
 
             // chairs
-            const chair1 = this.add.sprite(x - 20, y - 2, 'chair')
+            const chair1 = this.add.sprite(x - 40, y - 2, 'chair')
             .setOrigin(0.5).setDepth(1);
-            chair1.setScale(0.75);
+            chair1.setScale(1.5);
 
-            const chair2 = this.add.sprite(x + 20, y - 2, 'chair')
+            const chair2 = this.add.sprite(x + 40, y - 2, 'chair')
             .setOrigin(0.5).setDepth(1);
-            chair2.setScale(0.75);
+            chair2.setScale(1.5);
             chair2.flipX = true;
 
             return this.add.container(0, 0, [table, chair1, chair2]);
         }
+
+    update() {
+        const speed = 100;
+
+        // Stop previous movement
+        this.player.setVelocity(0);
+
+        // Move and play animations
+        if (this.cursors.a.isDown) {
+            this.player.setVelocityX(-speed);
+            this.player.flipX = false; // face left
+            this.player.anims.play('walk-left', true);
+        } 
+        else if (this.cursors.d.isDown) {
+            this.player.setVelocityX(speed);
+            this.player.flipX = false; // face right
+            this.player.anims.play('walk-right', true);
+        } 
+        else if (this.cursors.w.isDown) {
+            this.player.setVelocityY(-speed);
+            this.player.anims.play('walk-up', true);
+        } 
+        else if (this.cursors.s.isDown) {
+            this.player.setVelocityY(speed);
+            this.player.flipX = false;
+            this.player.anims.play('walk-down', true);
+        } 
+        else {
+            // stop animations when idle
+            this.player.anims.stop();
+        }
+    }
+
 
     changeScene ()
     {

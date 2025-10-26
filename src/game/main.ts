@@ -1,4 +1,3 @@
-import { GridEngine, GridEngineHeadless } from "grid-engine";
 import { GameOver } from './scenes/GameOver';
 import { CharSelect as CharSelect } from './scenes/CharSelect';
 import { MainMenu } from './scenes/MainMenu';
@@ -16,15 +15,20 @@ const config: Phaser.Types.Core.GameConfig = {
     height: 300,
     parent: 'game-container',
     backgroundColor: '#f3bdbd',
-
     pixelArt: true,
-    scale: {
-        // mode: Phaser.Scale.RESIZE,              
-        // autoCenter: Phaser.Scale.CENTER_BOTH, 
-        zoom: 3
+
+    physics: {
+        default: 'arcade',
+        arcade: {
+        gravity: { x: 0, y: 0 },
+        },
     },
 
-    
+    scale: {
+    // mode: Phaser.Scale.RESIZE,
+    // autoCenter: Phaser.Scale.CENTER_BOTH,
+        zoom: 3,
+    },
 
     scene: [
         Preloader,
@@ -36,16 +40,8 @@ const config: Phaser.Types.Core.GameConfig = {
         GameOver,
     ],
 
-    plugins: {
-    scene: [
-        {key: "gridEngine",
-        plugin: GridEngine,
-        mapping: "gridEngine",
-        },
-        ],
-    },
-    
-};
+    };
+
 
 
 
