@@ -19,8 +19,7 @@ export class MainMenu extends Scene
         const {width, height} = this.scale;
         
         this.title = this.add.text(width/2, height*0.5, 'Start', {
-            fontFamily: 'Arial Black', fontSize: 10, color: '#ffffff',
-            stroke: '#000000', strokeThickness: 2,
+            fontFamily: 'bongo', fontSize: 20, color: '#ffffff',
             align: 'center'
         }).setOrigin(0.5).setDepth(100).setInteractive({useHandCursor: true});
 

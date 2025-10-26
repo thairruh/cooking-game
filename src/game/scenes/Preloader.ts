@@ -10,15 +10,18 @@ export class Preloader extends Scene
 
     init ()
     {
-        //  We loaded this image in our Boot Scene, so we can display it here
-        this.add.image(512, 384, 'background');
+       
 
     }
 
     preload ()
     {
-        //  Load the assets for the game - Replace with your own assets
-        this.load.setPath('/assets/characters')
+        //  load ui assets
+        this.load.setPath('/assets/ui')
+        this.load.image('restaurantBg', 'background.png');
+
+        // load character assets
+        this.load.setPath('/assets/characters');
         this.load.image('oldman', 'oldman.png');
         this.load.image('girl', 'girl.png');
 
@@ -26,6 +29,11 @@ export class Preloader extends Scene
         frameWidth: 32,
         frameHeight: 32
         });
+
+        // load interior assets
+        this.load.setPath('/assets/interior');
+        this.load.image('table', 'table.png');
+        this.load.image('chair', 'chair.png');
 
     }
 
