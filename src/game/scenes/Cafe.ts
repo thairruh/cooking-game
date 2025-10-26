@@ -45,7 +45,10 @@ export class Cafe extends Scene
         w: Phaser.Input.Keyboard.KeyCodes.W,
         a: Phaser.Input.Keyboard.KeyCodes.A,
         s: Phaser.Input.Keyboard.KeyCodes.S,
-        d: Phaser.Input.Keyboard.KeyCodes.D
+        d: Phaser.Input.Keyboard.KeyCodes.D,
+        up: Phaser.Input.Keyboard.KeyCodes.UP,
+        down: Phaser.Input.Keyboard.KeyCodes.DOWN
+        
         });
 
         const {width, height} = this.scale;

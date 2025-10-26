@@ -34,7 +34,7 @@ export class Kitchen extends Scene
             this.player.setFrame(firstFrame);
         }
 
-        this.physics.world.setBounds(-50, 100, 600, 200);
+        this.physics.world.setBounds(-50, 100, 550, 200);
         this.player.setCollideWorldBounds(true); // stops at screen edges
 
         // Store movement keys

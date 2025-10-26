@@ -148,7 +148,7 @@ def dialogue():
             "npcId": npc_id,
             "stage": stage,
             "lines": lines,
-            "nextStage": stage + 1
+            "nextStage": stage + 1,
             "rating": rating
         }
         print(f"Response: {resp}")
