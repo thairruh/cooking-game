@@ -19,7 +19,7 @@ export class Cafe extends Scene
         super('Cafe');
     }
 
-    create ()
+    create (data: { playerY?: number , playerX?: number})
     { 
         console.log('has player texture?', this.textures.exists('player'));
         console.log('has walk-down anim?', this.anims.exists('walk-down'));
@@ -27,8 +27,10 @@ export class Cafe extends Scene
         console.log('has walk-side anim?', this.anims.exists('walk-side'));
 
 
-        // Enable physics 
-        this.player = this.physics.add.sprite(450, 150, 'player');
+        const spawnY = data.playerY ?? 150; // default if nothing is passed
+        const spawnX = data.playerX !== undefined ? 500 : 450;
+
+        this.player = this.physics.add.sprite(spawnX, spawnY, 'player');
         const anim = this.anims.get('walk-left');
         if (anim) {
             const firstFrame = anim.frames[0].frame.name; // or .frameNumber depending on your spritesheet
@@ -109,7 +111,7 @@ export class Cafe extends Scene
 
         if (!this.hasTransitioned && this.player.x > 540) {
             this.hasTransitioned = true;
-            this.scene.start('Kitchen');
+            this.scene.start('Kitchen', { playerY: this.player.y });
             this.hasTransitioned = false;
         }
 

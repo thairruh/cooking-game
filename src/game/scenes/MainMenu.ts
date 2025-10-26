@@ -50,7 +50,10 @@ export class MainMenu extends Scene {
       .setAngle(-3)
       .setDepth(100)
       .setInteractive({ useHandCursor: true })
-      .on('pointerdown', () => this.scene.start('Intro1'))
+      .on('pointerdown', () => {this.cameras.main.fadeOut(500, 0, 0, 0),
+        // Once fade-out finishes, start the next scene
+        this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, () => {
+            this.scene.start('Intro1')})})
       .on('pointerover', () => this.playBtn.setScale(this.playBtn.scale * 1.06))
       .on('pointerout',  () => this.playBtn.setScale(this.playBtnBaseScale));
 

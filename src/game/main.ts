@@ -1,5 +1,4 @@
 import { GameOver } from './scenes/GameOver';
-import { CharSelect as CharSelect } from './scenes/CharSelect';
 import { MainMenu } from './scenes/MainMenu';
 import { AUTO, Game } from 'phaser';
 import { Preloader } from './scenes/Preloader';
@@ -15,7 +14,7 @@ const config: Phaser.Types.Core.GameConfig = {
     width: 500,
     height: 300,
     parent: 'game-container',
-    backgroundColor: '#f3bdbd',
+    backgroundColor: '#000000ff',
     pixelArt: true,
 
     physics: {

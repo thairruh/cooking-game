@@ -16,7 +16,7 @@ export class Kitchen extends Scene
         super('Kitchen');
     }
 
-    create ()
+    create (data: { playerY?: number })
     {
         
         console.log('has player texture?', this.textures.exists('player'));
@@ -24,9 +24,10 @@ export class Kitchen extends Scene
         console.log('has walk-up anim?', this.anims.exists('walk-up'));
         console.log('has walk-side anim?', this.anims.exists('walk-side'));
 
+        const spawnY = data.playerY ?? 150; // default if nothing is passed
+        this.player = this.physics.add.sprite(-10, spawnY, 'player');
 
         // Enable physics 
-        this.player = this.physics.add.sprite(-10, 150, 'player');
         const anim = this.anims.get('walk-right');
         if (anim) {
             const firstFrame = anim.frames[0].frame.name; // or .frameNumber depending on your spritesheet
@@ -57,7 +58,6 @@ export class Kitchen extends Scene
         const scale = Math.max(scaleX, scaleY);
 
         this.background.setScale(scale);
-
         
         this.player.setScale(2);
         this.player.setDepth(2);
@@ -79,7 +79,7 @@ export class Kitchen extends Scene
 
         if (!this.hasTransitioned && this.player.x < -15) {
             this.hasTransitioned = true;
-            this.scene.start('Cafe');
+            this.scene.start('Cafe', { playerY: this.player.y , playerX: this.player.x});
             this.hasTransitioned = false;
         }
 

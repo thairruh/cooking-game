@@ -21,6 +21,7 @@ But inside, it feels calm. The kind of calm that makes you want to stay a little
   }
 
   async create() {
+    this.cameras.main.fadeIn(200, 0, 0, 0);
     const { width, height } = this.scale;
 
     // Background
