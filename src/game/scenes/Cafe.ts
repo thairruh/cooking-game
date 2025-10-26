@@ -35,8 +35,8 @@ export class Cafe extends Scene
         player.anims.play('walk-down', true);
 
 
-        this.createTableSet(80, 135);
-        this.createTableSet(80, 220);
+        this.createTableSet(80, 155);
+        this.createTableSet(80, 260);
 
         EventBus.emit('current-scene-ready', this);
     }

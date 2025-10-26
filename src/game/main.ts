@@ -12,8 +12,8 @@ import { Intro2 } from './scenes/Intro2';
 //  https://docs.phaser.io/api-documentation/typedef/types-core#gameconfig
 const config: Phaser.Types.Core.GameConfig = {
     type: AUTO,
-    width: 300,
-    height: 250,
+    width: 500,
+    height: 300,
     parent: 'game-container',
     backgroundColor: '#f3bdbd',
 
@@ -21,7 +21,7 @@ const config: Phaser.Types.Core.GameConfig = {
     scale: {
         // mode: Phaser.Scale.RESIZE,              
         // autoCenter: Phaser.Scale.CENTER_BOTH, 
-        zoom: 4
+        zoom: 3
     },
 
     
