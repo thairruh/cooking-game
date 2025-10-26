@@ -5,6 +5,8 @@ import { MainMenu } from './scenes/MainMenu';
 import { AUTO, Game } from 'phaser';
 import { Preloader } from './scenes/Preloader';
 import { Cafe } from './scenes/Cafe';
+import { Intro1 } from './scenes/Intro1';
+import { Intro2 } from './scenes/Intro2';
 
 //  Find out more information about the Game Config at:
 //  https://docs.phaser.io/api-documentation/typedef/types-core#gameconfig
@@ -27,9 +29,11 @@ const config: Phaser.Types.Core.GameConfig = {
     scene: [
         Preloader,
         MainMenu,
+        Intro1,
+        Intro2,
         CharSelect,
         Cafe,
-        GameOver
+        GameOver,
     ],
 
     plugins: {

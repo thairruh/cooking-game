@@ -1,12 +1,9 @@
 import { Scene } from 'phaser';
 
-
-export class Preloader extends Scene
-{
-    constructor ()
-    {
-        super('Preloader');
-    }
+export class Preloader extends Scene {
+  constructor() {
+    super('Preloader');
+  }
 
     init ()
     {
@@ -37,41 +34,38 @@ export class Preloader extends Scene
 
     }
 
-    create ()
-    {
-        this.anims.create({
-            key: 'walk-down',
-            frames: this.anims.generateFrameNumbers('anika', {start: 0, end: 2}),
-            frameRate: 5,
-            repeat: -1
-        });
+  create() {
+    this.anims.create({
+      key: 'walk-down',
+      frames: this.anims.generateFrameNumbers('anika', { start: 0, end: 2 }),
+      frameRate: 5,
+      repeat: -1
+    });
 
-        this.anims.create({
-            key: 'walk-up',
-            frames: this.anims.generateFrameNumbers('player', {start: 3, end: 5}),
-            frameRate: 5,
-            repeat: -1
-        });
+    this.anims.create({
+      key: 'walk-up',
+      frames: this.anims.generateFrameNumbers('anika', { start: 3, end: 5 }),
+      frameRate: 5,
+      repeat: -1
+    });
 
-        this.anims.create({
-            key: 'walk-left',
-            frames: this.anims.generateFrameNumbers('player', {start: 6, end: 8}),
-            frameRate: 5,
-            repeat: -1
-        });
+    this.anims.create({
+      key: 'walk-left',
+      frames: this.anims.generateFrameNumbers('anika', { start: 6, end: 8 }),
+      frameRate: 5,
+      repeat: -1
+    });
 
-        this.anims.create({
-            key: 'walk-right',
-            frames: this.anims.generateFrameNumbers('player', {start: 9, end: 11}),
-            frameRate: 5,
-            repeat: -1
-        });
+    this.anims.create({
+      key: 'walk-right',
+      frames: this.anims.generateFrameNumbers('anika', { start: 9, end: 11 }),
+      frameRate: 5,
+      repeat: -1
+    });
 
-        const player = this.add.sprite(200,200, 'anika');
+    // Optional test sprite:
+    // const player = this.add.sprite(200, 200, 'anika').play('walk-down');
 
-        player.anims.play('walk-down', true);
-
-
-        this.scene.start('MainMenu');
-    }
+    this.scene.start('MainMenu');
+  }
 }

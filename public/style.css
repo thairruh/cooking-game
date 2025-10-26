@@ -1,15 +1,9 @@
-@font-face {
-    font-family: 'bongo';
-    src: url('/assets/fonts/Bongo-8 Mono.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'monogram';
-    src: url('/assets/fonts/monogram-extended.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
+@font-face{
+  font-family: "Bongo8Mono";                 /* ← use this exact name in Phaser */
+  src: url("/assets/fonts/Bongo-8 Mono.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
 }
 
 body {
