@@ -1,5 +1,6 @@
 import { EventBus } from '../EventBus';
 import { GameObjects, Scene } from 'phaser';
+import { GridEngine, GridEngineHeadless } from "grid-engine";
 
 export class Cafe extends Scene
 {
@@ -24,9 +25,8 @@ export class Cafe extends Scene
             align: 'center'
         }).setOrigin(0.5).setDepth(100);
 
-
-        
-
+        const player = this.add.sprite(200, 200, 'player');
+        player.anims.play('walk-down', true);
 
         EventBus.emit('current-scene-ready', this);
     }
