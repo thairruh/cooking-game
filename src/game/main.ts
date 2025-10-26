@@ -1,3 +1,4 @@
+import { GridEngine, GridEngineHeadless } from "grid-engine";
 import { Boot } from './scenes/Boot';
 import { GameOver } from './scenes/GameOver';
 import { CharSelect as CharSelect } from './scenes/CharSelect';
@@ -10,17 +11,19 @@ import { Cafe } from './scenes/Cafe';
 //  https://docs.phaser.io/api-documentation/typedef/types-core#gameconfig
 const config: Phaser.Types.Core.GameConfig = {
     type: AUTO,
-    width: 1920,
-    height: 1080,
+    width: 500,
+    height: 300,
     parent: 'game-container',
     backgroundColor: '#f3bdbd',
 
+    pixelArt: true,
     scale: {
-        mode: Phaser.Scale.RESIZE,              
-        autoCenter: Phaser.Scale.CENTER_BOTH, 
-        width: 1920,
-        height: 1080,
+        // mode: Phaser.Scale.RESIZE,              
+        // autoCenter: Phaser.Scale.CENTER_BOTH, 
+        zoom: 3
     },
+
+    
 
     scene: [
         Boot,
@@ -29,7 +32,16 @@ const config: Phaser.Types.Core.GameConfig = {
         CharSelect,
         Cafe,
         GameOver
-    ]
+    ],
+
+    plugins: {
+    scene: [
+        {key: "gridEngine",
+        plugin: GridEngine,
+        mapping: "gridEngine",
+        },
+        ],
+    },
     
 };
 
